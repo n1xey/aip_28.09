@@ -21,6 +21,19 @@ int ** makeMtx(size_t m, size_t n)
     return mtxR;
 }
 
+int ** transpose(int ** mtx, size_t m, size_t n)
+{
+    int ** res = makeMtx(n, m);
+    for (size_t i = 0; i < m; ++i)
+    {
+        for (size_t j = 0; j < n; ++j)
+        {
+            res[j][i] = mtx[i][j];
+        }
+    }
+    return res;
+}
+
 int main()
 {
     long long mIn = 0;
@@ -32,5 +45,18 @@ int main()
     }
     size_t m = static_cast<size_t>(mIn);
     size_t n = static_cast<size_t>(nIn);
+    int ** mtx = makeMtx(m, n);
+    for (size_t i = 0; i < m; ++i)
+    {
+        for (size_t j = 0; j < n; ++j)
+        {
+            if (!(std::cin >> mtx[i][j]))
+            {
+                rmMtx(mtx, m);
+                return 1;
+            }
+        }
+    }
+    rmMtx(mtx, m);
     return 0;
 }
