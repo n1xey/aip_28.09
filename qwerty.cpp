@@ -2,6 +2,25 @@
 #include <cstddef>
 #include <new>
 
+void rmMtx(int ** mtx, size_t m)
+{
+    for (size_t i = 0; i < m; ++i)
+    {
+        delete[] mtx[i];
+    }
+    delete[] mtx;
+}
+
+int ** makeMtx(size_t m, size_t n)
+{
+    int ** mtxR = new int *[m];
+    for (size_t i = 0; i < m; ++i)
+    {
+        mtxR[i] = new int[n];
+    }
+    return mtxR;
+}
+
 int main()
 {
     long long mIn = 0;
